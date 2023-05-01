@@ -101,3 +101,11 @@ class FilterHeartData:
         ]
 
         return y_test
+    
+# import json
+# with open("/Users/harshpreetsingh/Documents/minor-project/final_pipeline/input_services/live_data_new.json","r") as f:
+#     data = json.loads(f.read())
+
+# data2 = [num for num in data if num>0]
+
+# print(FilterHeartData(data2).getAttributes())

@@ -1,1 +1,4 @@
 models/
+supporting_repos/
+*.json
+*.csv

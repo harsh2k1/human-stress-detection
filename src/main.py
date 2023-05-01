@@ -11,6 +11,11 @@ import numpy as np
 from datetime import datetime
 import json
 
+from argparse import ArgumentParser
+parser = ArgumentParser()
+parser.add_argument("-s","--store",help="Store data?", default=0)
+args = vars(parser.parse_args())
+
 import os
 import sys
 sys.path.append("/Users/harshpreetsingh/Documents/minor-project/final_pipeline")
@@ -68,6 +73,7 @@ while True:
     #     "head_position_flag": head_position,
     #     "eye_position_flag": eye_position
     # })
+    data.append(heart_rate)
     
 
     cv2.putText(img,f"Heart Rate: {heart_rate} bpm",(20,60),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
@@ -83,6 +89,6 @@ while True:
 cv2.destroyAllWindows()
 cap.release()
 
-location = config_parser['PATH']['project_path'] + "/input_services/live_data.json"
-with open(location,"w") as f:
-    f.write(json.dumps(data))
+if args['store']:
+    with open("/Users/harshpreetsingh/Documents/minor-project/final_pipeline/input_services/live_data_new.json","w") as f:
+        f.write(json.dumps(data))
