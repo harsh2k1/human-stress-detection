@@ -1,7 +1,17 @@
-from fastapi import  FastAPI
+from fastapi import APIRouter
 import uvicorn
-app = FastAPI()
+from pydantic import BaseModel
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+import sys
+sys.path.append("")
+from core.service.process_data_service import data_automation
 
+class ReqModel(BaseModel):
+    userid: str
+    password: str
+
+prediction_api_router = APIRouter()
+
+@prediction_api_router.post('/processData')
+def process(request_body:ReqModel):
+    data_automation(key=request_body.userid)
