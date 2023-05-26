@@ -30,3 +30,4 @@ token.txt
 supporting_repos/
 *.json
 *.csv
+*.db
