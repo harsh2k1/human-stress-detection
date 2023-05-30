@@ -52,9 +52,9 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     hashed_password = session.query(User).filter(User.username == username).first().hashed_password
     if not verify_password(password, hashed_password):
         raise HTTPException(status_code=401, detail="Invalid username or password")
-    
+
     # If authentication is successful, return the JWT token
-    return {"access_token": token, "token_type": "bearer"}
+    return {"access_token": token, "token_type": "bearer", "userId": username}
 
 
 @login_api_router.post("/createUser")
@@ -84,3 +84,8 @@ async def get_all_users():
     session = SessionLocal()
     users = session.query(User).all()
     return [user.__dict__ for user in users]
+
+
+@login_api_router.get("/")
+async def home():
+    return {"ping":"pong"}

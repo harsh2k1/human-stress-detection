@@ -10,6 +10,7 @@ app = FastAPI()
 app.include_router(prediction_api_router)
 app.include_router(monitor_api_router)
 app.include_router(login_api_router)
+# app.include_router(ingestion_router)
 origins = ["*"]
 app.add_middleware(
     CORSMiddleware,

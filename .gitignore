@@ -31,3 +31,4 @@ supporting_repos/
 *.json
 *.csv
 *.db
+node_modules/

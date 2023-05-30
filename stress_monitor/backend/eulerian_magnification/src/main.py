@@ -35,7 +35,17 @@ total = 0
 
 data = []
 
-while True:
+recording = True
+
+def start_recording():
+    global recording
+    recording = True
+
+def stop_recording():
+    global recording
+    recording = False
+
+while recording:
 
     ret, img = cap.read()
     ori_img = img
